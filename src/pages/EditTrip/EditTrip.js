@@ -5,7 +5,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 import { withAuth } from "../../lib/AuthProvider";
-
 const styles = (theme) => ({
   root: {
     "& > *": {
@@ -14,7 +13,6 @@ const styles = (theme) => ({
     },
   },
 });
-
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -26,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     width: 200,
   },
 }));
-
 class EditTrip extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +33,6 @@ class EditTrip extends Component {
       returnDate: this.props.returnDate,
     };
   }
-
   handleFormSubmit = (event) => {
     const travelCity = this.state.travelCity;
     const startDate = this.state.startDate;
@@ -50,24 +46,22 @@ class EditTrip extends Component {
       })
       .then(() => {
         this.props.getTheTrip();
-        // after submitting the form, redirect to '/projects'
+        // after submitting the form, redirect to '/travels'
         this.props.history.push("/travels");
       })
       .catch((error) => console.log(error));
   };
-
-  handleChangeTitle = (event) => {
+  handleChangeCity = (event) => {
     this.setState({
-      title: event.target.value,
+      travelCity: event.target.value,
     });
   };
-
-  handleChangeDesc = (event) => {
+  handleDateChange = (event) => {
     this.setState({
-      description: event.target.value,
+      startDate: event.target.value,
+      returnDate: event.target.value,
     });
   };
-
   render() {
     const { travelCity, startDate, returnDate } = this.state;
     const classes = useStyles();
@@ -86,7 +80,7 @@ class EditTrip extends Component {
             variant="outlined"
             name="travelCity"
             value={travelCity}
-            onChange={(e) => this.handleChange(e)}
+            onChange={(e) => this.handleChangeCity(e)}
           />
           <TextField
             id="date"
@@ -99,6 +93,7 @@ class EditTrip extends Component {
             InputLabelProps={{
               shrink: true,
             }}
+            onChange={(e) => this.handleDateChange(e)}
           />
           <TextField
             id="date"
@@ -111,11 +106,11 @@ class EditTrip extends Component {
             InputLabelProps={{
               shrink: true,
             }}
+            onChange={(e) => this.handleDateChange(e)}
           />
         </form>
       </div>
     );
   }
 }
-
 export default withAuth(withStyles(styles, { withTheme: true })(EditTrip));
