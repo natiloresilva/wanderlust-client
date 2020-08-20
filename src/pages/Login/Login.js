@@ -60,18 +60,18 @@ class Login extends Component {
             value={password}
             onChange={this.handleChange}
           />
+
+          {/*   <div className="container-button">
+            <Button type="submit" text="Login" />
+          </div> */}
+          <button type="submit">LOgin</button>
         </form>
         <div className="signup-text">
           <span>Don’t have an account? </span>
-          <a>
-            <Link to={"/signup"}>
-              <span>Signup!</span>
-            </Link>
-          </a>
-        </div>
 
-        <div className="container-button">
-          <Button type="submit" text="Login" />
+          <Link to={"/signup"}>
+            <span>Signup!</span>
+          </Link>
         </div>
       </div>
     );

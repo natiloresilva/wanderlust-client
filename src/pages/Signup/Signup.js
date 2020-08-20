@@ -5,6 +5,7 @@ import { TextField } from "@material-ui/core";
 import { withAuth } from "../../lib/AuthProvider";
 import "./signup.css";
 import Button from "../../components/Button/Button";
+import service from "../../lib/auth-service";
 
 const styles = (theme) => ({
   root: {
@@ -20,13 +21,17 @@ class Signup extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state;
-    this.props.signup({ username, password });
+    const { username, password, email } = this.state;
+    console.log(this.state);
+    service.signup({ username, password, email });
+    //this.props.signup({ username, password });
   };
 
   handleChange = (event) => {
     const { name, value } = event.target;
+    //console.log(name, value);
     this.setState({ [name]: value });
+    //console.log(this.state);
   };
 
   render() {
@@ -39,7 +44,7 @@ class Signup extends Component {
           className={classes.root}
           noValidate
           autoComplete="off"
-          onSubmit={this.handleFormSubmit}
+          onSubmit={(event) => this.handleFormSubmit(event)}
         >
           <TextField
             id="outlined-basic"
@@ -66,17 +71,17 @@ class Signup extends Component {
             value={password}
             onChange={this.handleChange}
           />
+
+          {/* <div className="container-button"> </div> */}
+          <button type="submit">signup</button>
         </form>
+
         <div className="login-text">
           <span>Already have account?</span>
-          <a>
-            <Link to={"/login"}>
-              <span>Login</span>
-            </Link>
-          </a>
-        </div>
-        <div className="container-button">
-          <Button type="submit" text="Signup" />
+
+          <Link to={"/login"}>
+            <span>Login</span>
+          </Link>
         </div>
       </div>
     );

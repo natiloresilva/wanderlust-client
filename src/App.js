@@ -10,6 +10,8 @@ import Private from "./pages/Private";
 import AuthProvider from "./lib/AuthProvider";
 import AnonRoute from "./components/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute";
+import CreateTrip from "./pages/CreateTrip/CreateTrip";
+import TripDetail from "./pages/TripDetails/TripDetail";
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +40,12 @@ class App extends Component {
                 <AnonRoute exact path="/signup" component={Signup} />
                 <AnonRoute exact path="/login" component={Login} />
                 <PrivateRoute exact path="/private" component={Private} />
+                <PrivateRoute
+                  exact
+                  path="/travel/trips"
+                  component={CreateTrip}
+                />
+                <PrivateRoute exact path="/tripDetail" component={TripDetail} />
               </Switch>
             </div>
           </AuthProvider>
