@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Presentation from "./pages/Presentation/Presentation";
@@ -12,6 +11,8 @@ import AnonRoute from "./components/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateTrip from "./pages/CreateTrip/CreateTrip";
 import TripDetail from "./pages/TripDetails/TripDetail";
+import Profile from "./pages/Profile/Profile";
+import EditProfile from "./pages/EditProfile/EditProfile";
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class App extends Component {
             {" "}
             {/*       <---  Envolvemos los componentes con AuthProvider       */}
             <div>
-              <Redirect from="/" to="/login" />
+              {/* <Redirect from="/" to="/login" /> */}
               <Switch>
                 <AnonRoute exact path="/signup" component={Signup} />
                 <AnonRoute exact path="/login" component={Login} />
@@ -45,7 +46,17 @@ class App extends Component {
                   path="/travel/trips"
                   component={CreateTrip}
                 />
-                <PrivateRoute exact path="/tripDetail" component={TripDetail} />
+                <PrivateRoute
+                  exact
+                  path="/tripDetail/:id"
+                  component={TripDetail}
+                />
+                <PrivateRoute exact path="/profile" component={Profile} />
+                <PrivateRoute
+                  exact
+                  path="/EditProfile"
+                  component={EditProfile}
+                />
               </Switch>
             </div>
           </AuthProvider>

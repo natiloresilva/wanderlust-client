@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-class TripDetails extends Component {
+import { withAuth } from "../../lib/AuthProvider";
+import NavBar from "../../components/NavBar/NavBar";
+
+class TripDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -11,9 +14,13 @@ class TripDetails extends Component {
   }
   getSingleTrip = () => {
     const { params } = this.props.match;
+    console.log(params);
     axios
-      .get(`http://localhost:4000/travel/trip/${params.id}`)
+      .get(`http://localhost:4000/travel/trips/${params.id}`, {
+        withCredentials: true,
+      })
       .then((responseFromApi) => {
+        console.log(responseFromApi.data);
         const theTrip = responseFromApi.data;
         this.setState(theTrip);
       })
@@ -28,9 +35,17 @@ class TripDetails extends Component {
         <p>{this.state.startDate}</p>
         <p>{this.state.returnDate}</p>
         <div>{this.state.idActivities}</div>
-        <Link to={"/private"}>Back to homepage</Link>
+
+        <Link to="/private">
+          <button type="button" href="/private">
+            Back
+          </button>
+        </Link>
+
+        <NavBar />
       </div>
     );
   }
 }
-export default TripDetails;
+
+export default withAuth(TripDetail);

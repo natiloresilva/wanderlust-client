@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
@@ -7,6 +7,7 @@ import { withAuth } from "../../lib/AuthProvider";
 //import "./createtrip.css";
 import Button from "../../components/Button/Button";
 import axios from "axios";
+import NavBar from "../../components/NavBar/NavBar";
 
 const styles = (theme) => ({
   root: {
@@ -43,14 +44,16 @@ class CreateATrip extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     const { travelCity, startDate, returnDate } = this.state;
+    console.log(this.state);
     axios
       .post(
         "http://localhost:4000/travel/trips",
         { travelCity, startDate, returnDate },
         { withCredentials: true }
       )
-      .then((travel) => {
-        console.log(travel);
+      .then(({ data }) => {
+        console.log(data, "TRAVEL");
+        this.props.history.push(`/tripDetail/${data._id}`);
       })
       .catch((err) => {
         console.log(err);
@@ -115,6 +118,14 @@ class CreateATrip extends Component {
             Create
           </button>
         </form>
+
+        <Link to="/private">
+          <button type="button" href="/private">
+            Back
+          </button>
+        </Link>
+
+        <NavBar />
       </div>
     );
   }
