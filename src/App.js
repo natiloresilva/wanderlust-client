@@ -13,7 +13,7 @@ import CreateTrip from "./pages/CreateTrip/CreateTrip";
 import TripDetail from "./pages/TripDetails/TripDetail";
 import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/EditProfile/EditProfile";
-
+import EditTrip from "./pages/EditTrip/EditTrip";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -57,6 +57,8 @@ class App extends Component {
                   path="/EditProfile"
                   component={EditProfile}
                 />
+
+                <PrivateRoute exact path="/EditTrip" component={EditTrip} />
               </Switch>
             </div>
           </AuthProvider>

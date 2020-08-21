@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import { withAuth } from "../../lib/AuthProvider";
 import { Link } from "react-router-dom";

@@ -14,7 +14,7 @@ class TripDetail extends Component {
   }
   getSingleTrip = () => {
     const { params } = this.props.match;
-    console.log(params);
+    console.log(params, "PARAMSSSSSSSSSSSSSSSSSSSSSSSSS");
     axios
       .get(`http://localhost:4000/travel/trips/${params.id}`, {
         withCredentials: true,
@@ -35,6 +35,12 @@ class TripDetail extends Component {
         <p>{this.state.startDate}</p>
         <p>{this.state.returnDate}</p>
         <div>{this.state.idActivities}</div>
+
+        <Link to="/EditTrip">
+          <button type="button" href="/EditTrip">
+            Edit
+          </button>
+        </Link>
 
         <Link to="/private">
           <button type="button" href="/private">

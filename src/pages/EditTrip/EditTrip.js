@@ -5,6 +5,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 import { withAuth } from "../../lib/AuthProvider";
+import NavBar from "../../components/NavBar/NavBar";
+
 const styles = (theme) => ({
   root: {
     "& > *": {
@@ -39,11 +41,17 @@ class EditTrip extends Component {
     const returnDate = this.state.returnDate;
     event.preventDefault();
     axios
-      .put(`http://localhost:4000/travel/trips/${this.props._id}`, {
-        travelCity,
-        startDate,
-        returnDate,
-      })
+      .put(
+        `http://localhost:4000/travel/trips/${this.props._id}`,
+        {
+          travelCity,
+          startDate,
+          returnDate,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then(() => {
         this.props.getTheTrip();
         // after submitting the form, redirect to '/travels'
@@ -62,12 +70,20 @@ class EditTrip extends Component {
       returnDate: event.target.value,
     });
   };
+  /* hadleDelete = (index) => {
+      const tripCopy = [...this.state];
+      tripCopy.splice(index, 1);
+      this.setState({
+        contacts: contactsCopy,
+      });
+    }; */
+
   render() {
     const { travelCity, startDate, returnDate } = this.state;
-    const classes = useStyles();
+    const { classes } = this.props;
     return (
       <div>
-        <h1 className="title-newtrip">Create a new trip</h1>
+        <h1 className="title-newtrip">Edit The information of your trip</h1>
         <form
           className={classes.root}
           noValidate
@@ -108,7 +124,16 @@ class EditTrip extends Component {
             }}
             onChange={(e) => this.handleDateChange(e)}
           />
+          <button type="submit">Save changes</button>
+          <button type="submit">Delete</button>
         </form>
+        <Link to="/private">
+          <button type="button" href="/private">
+            Back
+          </button>
+        </Link>
+
+        <NavBar />
       </div>
     );
   }
