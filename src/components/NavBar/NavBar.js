@@ -9,7 +9,9 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    width: 370,
+    width: "100%",
+    position: "fixed",
+    bottom: 0,
   },
 });
 
@@ -26,11 +28,11 @@ export default function SimpleBottomNavigation() {
       showLabels
       className={classes.root}
     >
-      <Link to="/private">
+      <Link to="/home">
         <BottomNavigationAction label="Home" icon={<HomeIcon />} />
       </Link>
 
-      <Link to="/travel/trips">
+      <Link to="/trips/create">
         <BottomNavigationAction
           label="Create Trip"
           icon={<AddCircleOutlineIcon />}

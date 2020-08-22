@@ -40,15 +40,15 @@ class App extends Component {
               <Switch>
                 <AnonRoute exact path="/signup" component={Signup} />
                 <AnonRoute exact path="/login" component={Login} />
-                <PrivateRoute exact path="/private" component={Private} />
+                <PrivateRoute exact path="/home" component={Private} />
                 <PrivateRoute
                   exact
-                  path="/travel/trips"
+                  path="/trips/create"
                   component={CreateTrip}
                 />
                 <PrivateRoute
                   exact
-                  path="/tripDetail/:id"
+                  path="/trips/detail/:id"
                   component={TripDetail}
                 />
                 <PrivateRoute exact path="/profile" component={Profile} />
@@ -58,7 +58,11 @@ class App extends Component {
                   component={EditProfile}
                 />
 
-                <PrivateRoute exact path="/EditTrip" component={EditTrip} />
+                <PrivateRoute
+                  exact
+                  path="/trips/detail/edit/:id"
+                  component={EditTrip}
+                />
               </Switch>
             </div>
           </AuthProvider>

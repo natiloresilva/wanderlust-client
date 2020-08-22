@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
 import NavBar from "../../components/NavBar/NavBar";
+import Button from "../../components/Button/Button";
 
 class TripDetail extends Component {
   constructor(props) {
@@ -14,13 +15,11 @@ class TripDetail extends Component {
   }
   getSingleTrip = () => {
     const { params } = this.props.match;
-    console.log(params, "PARAMSSSSSSSSSSSSSSSSSSSSSSSSS");
     axios
       .get(`http://localhost:4000/travel/trips/${params.id}`, {
         withCredentials: true,
       })
       .then((responseFromApi) => {
-        console.log(responseFromApi.data);
         const theTrip = responseFromApi.data;
         this.setState(theTrip);
       })
@@ -36,16 +35,12 @@ class TripDetail extends Component {
         <p>{this.state.returnDate}</p>
         <div>{this.state.idActivities}</div>
 
-        <Link to="/EditTrip">
-          <button type="button" href="/EditTrip">
-            Edit
-          </button>
+        <Link to={{ pathname: `/trips/detail/edit/${this.state._id}` }}>
+          <button type="button">Edit</button>
         </Link>
 
-        <Link to="/private">
-          <button type="button" href="/private">
-            Back
-          </button>
+        <Link to="/home">
+          <Button text="Back" />
         </Link>
 
         <NavBar />

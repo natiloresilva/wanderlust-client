@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 import { withAuth } from "../../lib/AuthProvider";
 import NavBar from "../../components/NavBar/NavBar";
+import Button from "../../components/Button/Button";
 
 const styles = (theme) => ({
   root: {
@@ -28,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 class EditTrip extends Component {
   constructor(props) {
+    console.log(props);
+
     super(props);
     this.state = {
       travelCity: this.props.travelCity,
@@ -125,12 +128,9 @@ class EditTrip extends Component {
             onChange={(e) => this.handleDateChange(e)}
           />
           <button type="submit">Save changes</button>
-          <button type="submit">Delete</button>
         </form>
-        <Link to="/private">
-          <button type="button" href="/private">
-            Back
-          </button>
+        <Link to="/home">
+          <Button text="Back" />
         </Link>
 
         <NavBar />

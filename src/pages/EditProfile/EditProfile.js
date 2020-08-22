@@ -43,8 +43,12 @@ class EditProfile extends Component {
         city,
         bio,
       })
-      .then(() => {
-        this.props.history.push("/profile");
+      .then((response) => {
+        console.log(response);
+        this.props.history.push({
+          pathname: "/profile",
+          state: { user: response.data.user },
+        });
       })
       .catch((error) => console.log(error));
   };

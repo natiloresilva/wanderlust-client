@@ -39,7 +39,7 @@ class Signup extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <h1 className="title-signup">Sign Up</h1>
+        <h1 className="title-signup">Sign up!</h1>
         <form
           className={classes.root}
           noValidate
@@ -72,12 +72,13 @@ class Signup extends Component {
             onChange={this.handleChange}
           />
 
-          {/* <div className="container-button"> </div> */}
-          <button type="submit">signup</button>
+          <div className="container-button">
+            <Button handleClickButton={this.handleFormSubmit} text="Signup" />
+          </div>
         </form>
 
         <div className="login-text">
-          <span>Already have account?</span>
+          <span>Already have account? </span>
 
           <Link to={"/login"}>
             <span>Login</span>

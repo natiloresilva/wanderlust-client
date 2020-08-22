@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 import { withAuth } from "../../lib/AuthProvider";
-//import "./createtrip.css";
+import "./createtrip.css";
 import Button from "../../components/Button/Button";
 import axios from "axios";
 import NavBar from "../../components/NavBar/NavBar";
@@ -53,7 +53,7 @@ class CreateATrip extends Component {
       )
       .then(({ data }) => {
         console.log(data, "TRAVEL");
-        this.props.history.push(`/tripDetail/${data._id}`);
+        this.props.history.push(`/trips/detail/${data._id}`);
       })
       .catch((err) => {
         console.log(err);
@@ -64,11 +64,11 @@ class CreateATrip extends Component {
       returnDate: "",
     });
   };
-  /* handleClick = () => {
-    let path = `/travel/trip/${this.props._id}`;
-    this.props.history.push(path);
+
+  goBack = () => {
+    this.props.history.push("/home");
   };
- */
+
   render() {
     const { travelCity, startDate, returnDate } = this.state;
     const { classes } = this.props;
@@ -113,17 +113,16 @@ class CreateATrip extends Component {
             }}
             onChange={this.handleChange}
           />
-          <button type="submit">
-            {/* onClick={this.handleClick} */}
-            Create
-          </button>
+
+          <div className="container-button">
+            <Button
+              handleClickButton={this.handleFormSubmit}
+              text="Create trip"
+            />
+          </div>
         </form>
 
-        <Link to="/private">
-          <button type="button" href="/private">
-            Back
-          </button>
-        </Link>
+        <Button type="button" text="Back" handleClickButton={this.goBack} />
 
         <NavBar />
       </div>
