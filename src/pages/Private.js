@@ -35,7 +35,21 @@ class Private extends Component {
       });
   };
 
+  notTripsVerify() {
+    return (
+      <div className="container-nottrips">
+        <Typography variant="body2" color="textSecondary" component="p">
+          ¡Todavía no tienes viajes, crea uno y que comience la aventura!
+        </Typography>
+      </div>
+    );
+  }
+
   showAllTrips() {
+    if (this.state.trips.length === 0) {
+      return this.notTripsVerify();
+    }
+
     const listAllTravels = this.state.trips.map((trip) => (
       // Correcto! La key debería ser especificada dentro del array.
       <Card key={trip._id} travel={{ trip }} />
@@ -51,6 +65,10 @@ class Private extends Component {
   }
 
   showFilterTrips() {
+    if (this.state.trips.length === 0) {
+      return this.notTripsVerify();
+    }
+
     const tripsToFilter = [...this.state.trips];
 
     // Primero filtramos segun el valor del textSearch (operador filter) y luego mapeamos para transformarlos en un array de componentes Card (operador map)
@@ -77,17 +95,19 @@ class Private extends Component {
 
   render() {
     return (
-      <div className="container-home">
-        <div className="title-home">
-          <Typography gutterBottom variant="h3" component="h3">
-            Hello, {this.props.user.username} !
-          </Typography>
+      <div>
+        <div className="container-home">
+          <div className="title-home">
+            <Typography gutterBottom variant="h3" component="h3">
+              Hello, {this.props.user.username} !
+            </Typography>
+          </div>
+          <SearchBar handleSearch={this.handleSearch} />
+          {/* Si hay una búsqueda me muestra showFilterTrips sino showAllTrips */}
+          {this.state.textSearch.length > 0
+            ? this.showFilterTrips()
+            : this.showAllTrips()}
         </div>
-        <SearchBar handleSearch={this.handleSearch} />
-        {/* Si hay una búsqueda me muestra showFilterTrips sino showAllTrips */}
-        {this.state.textSearch.length > 0
-          ? this.showFilterTrips()
-          : this.showAllTrips()}
         <NavBar />
       </div>
     );

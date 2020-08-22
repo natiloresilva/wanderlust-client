@@ -6,8 +6,13 @@
 .container-home {
   margin-left: 5%;
   width: 90%;
+  padding-bottom: 90px;
 }
 
 .card-travel {
+  margin-top: 30px;
+}
+
+.container-nottrips {
   margin-top: 30px;
 }

@@ -22,17 +22,9 @@ const useStyles = makeStyles({
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
-      showLabels
-      className={classes.root}
-    >
+    <BottomNavigation className={classes.root}>
       <Link to="/home">
         <BottomNavigationAction label="Home" icon={<HomeIcon />} />
       </Link>

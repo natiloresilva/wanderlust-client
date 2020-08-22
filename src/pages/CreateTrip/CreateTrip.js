@@ -45,7 +45,7 @@ class CreateATrip extends Component {
       )
       .then(({ data }) => {
         console.log(data, "TRAVEL");
-        this.props.history.push(`/trips/detail/${data._id}`);
+        this.props.history.push(`/home`);
       })
       .catch((err) => {
         console.log(err);
@@ -84,9 +84,7 @@ class CreateATrip extends Component {
               displayEmpty
               className={classes.selectEmpty}
             >
-              <MenuItem value="Barcelona">
-                <em>Barcelona</em>
-              </MenuItem>
+              <MenuItem value="Barcelona">Barcelona</MenuItem>
               <MenuItem value={"Roma"}>Roma</MenuItem>
               <MenuItem value={"Madrid"}>Madrid</MenuItem>
               <MenuItem value={"Paris"}>Paris</MenuItem>
