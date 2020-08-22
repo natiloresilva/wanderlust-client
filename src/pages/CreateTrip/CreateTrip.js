@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import { useHistory, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 import { withAuth } from "../../lib/AuthProvider";
 import "./createtrip.css";
 import Button from "../../components/Button/Button";
 import axios from "axios";
 import NavBar from "../../components/NavBar/NavBar";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const styles = (theme) => ({
   root: {
@@ -17,17 +20,7 @@ const styles = (theme) => ({
     },
   },
 });
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-}));
+
 class CreateATrip extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +37,6 @@ class CreateATrip extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     const { travelCity, startDate, returnDate } = this.state;
-    console.log(this.state);
     axios
       .post(
         "http://localhost:4000/travel/trips",
@@ -69,26 +61,38 @@ class CreateATrip extends Component {
     this.props.history.push("/home");
   };
 
+  handleChangeSelect = (event) => {
+    this.setState({ travelCity: event.target.value });
+  };
+
   render() {
     const { travelCity, startDate, returnDate } = this.state;
     const { classes } = this.props;
     return (
       <div>
         <h1 className="title-newtrip">Create a new trip</h1>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={this.handleFormSubmit}
-        >
-          <TextField
-            id="outlined-basic"
-            label="City"
-            variant="outlined"
-            name="travelCity"
-            value={travelCity}
-            onChange={this.handleChange}
-          />
+        <form className={classes.root} noValidate autoComplete="off">
+          <FormControl className={classes.formControl}>
+            <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+              City
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-placeholder-label-label"
+              id="demo-simple-select-placeholder-label"
+              value={travelCity}
+              onChange={this.handleChangeSelect}
+              displayEmpty
+              className={classes.selectEmpty}
+            >
+              <MenuItem value="Barcelona">
+                <em>Barcelona</em>
+              </MenuItem>
+              <MenuItem value={"Roma"}>Roma</MenuItem>
+              <MenuItem value={"Madrid"}>Madrid</MenuItem>
+              <MenuItem value={"Paris"}>Paris</MenuItem>
+            </Select>
+            <FormHelperText>Pick a city!</FormHelperText>
+          </FormControl>
           <TextField
             id="date"
             label="Start Date"
@@ -113,16 +117,15 @@ class CreateATrip extends Component {
             }}
             onChange={this.handleChange}
           />
-
-          <div className="container-button">
-            <Button
-              handleClickButton={this.handleFormSubmit}
-              text="Create trip"
-            />
-          </div>
         </form>
 
-        <Button type="button" text="Back" handleClickButton={this.goBack} />
+        <div className="container-createtrip-buttons">
+          <Button type="button" text="Back" handleClickButton={this.goBack} />
+          <Button
+            handleClickButton={this.handleFormSubmit}
+            text="Create trip"
+          />
+        </div>
 
         <NavBar />
       </div>

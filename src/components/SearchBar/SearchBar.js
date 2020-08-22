@@ -1,20 +1,17 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/core/styles";
-import { withAuth } from "../../lib/AuthProvider";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
-import DirectionsIcon from "@material-ui/icons/Directions";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     padding: "2px 4px",
     display: "flex",
     alignItems: "center",
-    width: 400,
+    width: "90%",
+    marginLeft: "5%",
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -27,49 +24,42 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     margin: 4,
   },
-}));
+});
 
 class SearchBar extends React.Component {
-  state = {
-    search: "",
-  };
-  handleChange = (event) => {
-    const updatedText = event.target.value;
-    this.setState({ search: updatedText });
-    this.props.filterTrips(updatedText);
-  };
+  constructor(props) {
+    super(props);
+    this.setSearch = this.setSearch.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
+    this.state = {
+      search: "",
+    };
+  }
+  setSearch(event) {
+    this.setState({ search: event.target.value });
+  }
+  handleClick() {
+    this.props.handleSearch(this.state.search);
+  }
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <input
-          type="text"
-          name="search"
-          value={this.state.search}
-          onChange={this.handleChange}
-        />
-
-        <Paper component="form" className={classes.root}>
+        <Paper className={classes.root}>
           <InputBase
             className={classes.input}
             placeholder="Search"
             inputProps={{ "aria-label": "search google maps" }}
+            onChange={this.setSearch}
           />
           <IconButton
             type="submit"
             className={classes.iconButton}
             aria-label="search"
+            onClick={this.handleClick}
           >
             <SearchIcon />
-          </IconButton>
-          <Divider className={classes.divider} orientation="vertical" />
-          <IconButton
-            color="primary"
-            className={classes.iconButton}
-            aria-label="directions"
-          >
-            <DirectionsIcon />
           </IconButton>
         </Paper>
       </div>
@@ -77,4 +67,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default withAuth(SearchBar);
+export default withStyles(styles, { withTheme: true })(SearchBar);

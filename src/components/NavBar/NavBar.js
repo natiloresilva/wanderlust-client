@@ -4,14 +4,19 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeIcon from "@material-ui/icons/Home";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import AddIcon from "@material-ui/icons/Add";
 import { Link } from "react-router-dom";
+import { Fab } from "@material-ui/core";
+import "./navbar.css";
 
 const useStyles = makeStyles({
   root: {
     width: "100%",
     position: "fixed",
     bottom: 0,
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });
 
@@ -33,10 +38,9 @@ export default function SimpleBottomNavigation() {
       </Link>
 
       <Link to="/trips/create">
-        <BottomNavigationAction
-          label="Create Trip"
-          icon={<AddCircleOutlineIcon />}
-        />
+        <Fab className="fab" size="small" color="secondary" aria-label="add">
+          <AddIcon />
+        </Fab>
       </Link>
 
       <Link to="/profile">

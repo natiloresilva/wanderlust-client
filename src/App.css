@@ -2,3 +2,12 @@
   margin: 0;
   padding: 0;
 }
+
+.container-home {
+  margin-left: 5%;
+  width: 90%;
+}
+
+.card-travel {
+  margin-top: 30px;
+}

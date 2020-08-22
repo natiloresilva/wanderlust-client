@@ -1,5 +1,7 @@
-.container-button {
-  width: 100%;
+.container-createtrip-buttons {
+  width: 90%;
   text-align: center;
-  padding-top: 10%;
+  margin-left: 5%;
+  display: flex;
+  justify-content: space-between;
 }
