@@ -31,7 +31,7 @@ export default function ImgMediaCard(props) {
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image="https://u3ajavea.com/info/wp-content/uploads/2019/02/Travel.jpg"
+          image="https://www.expreso.info/files/2020-04/Felices_Vacaciones.jpg"
           title="Contemplative Reptile"
         />
         <CardContent>

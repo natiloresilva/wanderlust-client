@@ -7,6 +7,9 @@ import Button from "../../components/Button/Button";
 import { Typography } from "@material-ui/core";
 import "./tripdetail.css";
 import Map from "../../components/Map/Map";
+import { Fab } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import { useHistory } from "react-router-dom";
 
 class TripDetail extends Component {
   constructor(props) {
@@ -67,6 +70,13 @@ class TripDetail extends Component {
         break;
     }
   }
+
+  // history = () => useHistory();
+
+  //edit = () => {
+    //history.push(`/trips/detail/edit/:id`);
+  //};
+
   render() {
     return (
       <div className="container-trip-detail">
@@ -80,9 +90,26 @@ class TripDetail extends Component {
           {this.state.returnDate}
         </Typography>
 
+        {/* 
         <div className="container-map">
           <Map lat={this.state.lat} lng={this.state.lng} />
+        </div> 
+        */}
+
+        <Link
+          to={`/trips/detail/${this.state.travelCity}/${this.props.match.params.id}/addActivity`}
+        >
+          <Fab className="fab" size="small" color="secondary" aria-label="add">
+            <AddIcon />
+          </Fab>
+        </Link>
+
+        {/*
+        <div className="container-edit-button">
+          <Button text="Edit" handleClickButton={edit} />
         </div>
+        */}
+
         <NavBar />
       </div>
     );
