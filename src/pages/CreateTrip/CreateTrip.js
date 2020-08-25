@@ -85,9 +85,40 @@ class CreateATrip extends Component {
               className={classes.selectEmpty}
             >
               <MenuItem value="Barcelona">Barcelona</MenuItem>
-              <MenuItem value={"Roma"}>Roma</MenuItem>
+              <MenuItem value={"Amsterdam"}>Amsterdam</MenuItem>
+              <MenuItem value={"Bangkok"}>Bangkok</MenuItem>
+              <MenuItem value={"Berlin"}>Berlin</MenuItem>
+              <MenuItem value={"Budapest"}>Budapest</MenuItem>
+              <MenuItem value={"Buenos Aires"}>Buenos Aires</MenuItem>
+              <MenuItem value={"Hong Kong"}>Hong Kong</MenuItem>
+              <MenuItem value={"Istanbul"}>Istanbul</MenuItem>
+              <MenuItem value={"Krakow"}>Krakow</MenuItem>
+              <MenuItem value={"Liverpool"}>Liverpool</MenuItem>
+              <MenuItem value={"London"}>London</MenuItem>
               <MenuItem value={"Madrid"}>Madrid</MenuItem>
+              <MenuItem value={"Malaga"}>Malaga</MenuItem>
+              <MenuItem value={"Miami"}>Miami</MenuItem>
+              <MenuItem value={"Milan"}>Milan</MenuItem>
+              <MenuItem value={"Moscow"}>Moscow</MenuItem>
+              <MenuItem value={"Munich"}>Munich</MenuItem>
+              <MenuItem value={"Mykonos"}>Mykonos</MenuItem>
+              <MenuItem value={"New York"}>New York</MenuItem>
+              <MenuItem value={"Oslo"}>Oslo</MenuItem>
+              <MenuItem value={"Oxford"}>Oxford</MenuItem>
+              <MenuItem value={"Palermo"}>Palermo</MenuItem>
               <MenuItem value={"Paris"}>Paris</MenuItem>
+              <MenuItem value={"Pisa"}>Pisa</MenuItem>
+              <MenuItem value={"Positano"}>Positano</MenuItem>
+              <MenuItem value={"Rome"}>Rome</MenuItem>
+              <MenuItem value={"Sao Paulo"}>Sao Paulo</MenuItem>
+              <MenuItem value={"Sydney"}>Sydney</MenuItem>
+              <MenuItem value={"Tokyo"}>Tokyo</MenuItem>
+              <MenuItem value={"Toronto"}>Toronto</MenuItem>
+              <MenuItem value={"Toulouse"}>Toulouse</MenuItem>
+              <MenuItem value={"Turin"}>Turin</MenuItem>
+              <MenuItem value={"Valencia"}>Valencia</MenuItem>
+              <MenuItem value={"Verona"}>Verona</MenuItem>
+              <MenuItem value={"Zurich"}>Zurich</MenuItem>
             </Select>
             <FormHelperText>Pick a city!</FormHelperText>
           </FormControl>
