@@ -21,6 +21,7 @@ class TripDetail extends Component {
       returnDate: "",
       lng: "",
       lat: "",
+      idActivities: []
     };
   }
   componentDidMount() {
@@ -97,6 +98,10 @@ class TripDetail extends Component {
           <Link to={`/trips/detail/edit/${this.state.travelCity}/${this.props.match.params.id}`}>Edit</Link>
         </div>
 
+        {this.state.idActivities && this.state.idActivities.map((activity) => (
+        <PendingActivityCard info={activity}/>
+        ))}
+
         <Link
           to={{
             pathname: `/trips/detail/${this.state.travelCity}/${this.props.match.params.id}/addActivity`,
@@ -107,6 +112,8 @@ class TripDetail extends Component {
             <AddIcon />
           </Fab>
         </Link>
+
+        
 
         <NavBar />
       </div>

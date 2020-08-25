@@ -33,36 +33,27 @@ function PendingActivityCard(props) {
   console.log(props, "FSLDJFLKSDLFSDLK");
   return (
     <>
-      {props.info.map((activity) => (
         <Card className={classes.root}>
           <CardActionArea>
             <CardMedia
               component="img"
               alt="Contemplative Reptile"
               height="140"
-              image={activity.images[0].source_url}
+              image={props.info.images[0].source_url}
               title="Contemplative Reptie"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {activity.name}
+                {props.info.name}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {activity.snippet}
+                {props.info.snippet}
               </Typography>
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button
-              size="small"
-              color="primary"
-              onClick={(e) => removeFromTrip(e, activity)}
-            >
-              Remove Activity
-            </Button>
           </CardActions>
         </Card>
-      ))}
     </>
   );
 }

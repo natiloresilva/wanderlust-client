@@ -19,10 +19,11 @@ const useStyles = makeStyles({
 
 function ActivityCard(props) {
   const addToTrip = (e, activity) => {
-    console.log(activity, props, e);
+    console.log(activity)
+    //console.log(activity, props, e);
     axios
       .put(
-        `http://localhost:4000/travel/trips/${props.params}/addThing/${activity.id}`
+        `http://localhost:4000/travel/trips/${props.params}/addThing/${activity.id}`, { activity }
       )
       .then((addedActivity) => console.log(addedActivity))
       .catch((err) => console.log(err));

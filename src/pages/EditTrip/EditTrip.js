@@ -70,13 +70,14 @@ class EditTrip extends Component {
       returnDate: event.target.value,
     });
   };
-  /* hadleDelete = (index) => {
-      const tripCopy = [...this.state];
-      tripCopy.splice(index, 1);
-      this.setState({
-        trip: tripCopy,
-      });
-    }; */
+  handleDelete = (index) => {
+    axios
+    .delete(`http://localhost:4000/travel/trips/${this.props.match.params.id}`)
+    .then(() => {
+      this.props.history.push("/home");
+    })
+    .catch((error) => console.log(error));
+  }
 
   render() {
     const { startDate, returnDate } = this.state;
@@ -118,6 +119,7 @@ class EditTrip extends Component {
           />
           <button type="submit">Save Changes</button>
         </form>
+        <button type="submit" onClick={this.handleDelete}>Delete</button>
         <Link to="/home">
           <Button text="Back" />
         </Link>
