@@ -29,7 +29,7 @@ class AddActivities extends Component {
         `https://www.triposo.com/api/20200803/location.json?part_of=${this.props.match.params.travelCity}&child_tag_labels=cuisine&account=EWNKH6F9&token=bksj0zwxed3fe4vfyagabwozo4ca2yro`
       )
       .then((cuisineResponse) => {
-        console.log(cuisineResponse);
+        console.log('hola', cuisineResponse);
         this.setState({ results: cuisineResponse.data.results });
       });
   };
@@ -75,6 +75,7 @@ class AddActivities extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <h1>{this.state.travelCity}</h1>
@@ -103,7 +104,7 @@ class AddActivities extends Component {
           <Button type="button" text="Back" handleClickButton={this.goBack} />
         </div>
 
-        <ActivityCard info={this.state.results} />
+        <ActivityCard info={this.state.results} params={this.props.match.params.id} />
 
         <NavBar />
       </div>

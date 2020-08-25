@@ -63,7 +63,7 @@ class App extends Component {
 
                 <PrivateRoute
                   exact
-                  path="/trips/detail/edit/:id"
+                  path="/trips/detail/edit/:travelCity/:id"
                   component={EditTrip}
                 />
               </Switch>

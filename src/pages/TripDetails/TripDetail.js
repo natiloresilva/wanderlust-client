@@ -10,6 +10,7 @@ import Map from "../../components/Map/Map";
 import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useHistory } from "react-router-dom";
+import PendingActivityCard from "../../components/PendingActivityCard/PendingActivityCard";
 
 class TripDetail extends Component {
   constructor(props) {
@@ -71,11 +72,7 @@ class TripDetail extends Component {
     }
   }
 
-  // history = () => useHistory();
 
-  //edit = () => {
-    //history.push(`/trips/detail/edit/:id`);
-  //};
 
   render() {
     return (
@@ -96,19 +93,20 @@ class TripDetail extends Component {
         </div> 
         */}
 
+        <div>
+          <Link to={`/trips/detail/edit/${this.state.travelCity}/${this.props.match.params.id}`}>Edit</Link>
+        </div>
+
         <Link
-          to={`/trips/detail/${this.state.travelCity}/${this.props.match.params.id}/addActivity`}
+          to={{
+            pathname: `/trips/detail/${this.state.travelCity}/${this.props.match.params.id}/addActivity`,
+            state: { detail: this.props.match.params.id },
+          }}
         >
           <Fab className="fab" size="small" color="secondary" aria-label="add">
             <AddIcon />
           </Fab>
         </Link>
-
-        {/*
-        <div className="container-edit-button">
-          <Button text="Edit" handleClickButton={edit} />
-        </div>
-        */}
 
         <NavBar />
       </div>

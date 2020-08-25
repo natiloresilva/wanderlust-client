@@ -17,20 +17,20 @@ const useStyles = makeStyles({
   },
 });
 
-function ActivityCard(props) {
-  const addToTrip = (e, activity) => {
+function PendingActivityCard(props) {
+  const removeFromTrip = (e, activity) => {
     console.log(activity, props, e);
     axios
       .put(
-        `http://localhost:4000/travel/trips/${props.params}/addThing/${activity.id}`
+        `http://localhost:4000/travel/trips/${props.params}/removeThing/${activity.id}`
       )
-      .then((addedActivity) => console.log(addedActivity))
+      .then((removedActivity) => console.log(removedActivity))
       .catch((err) => console.log(err));
   };
 
   const classes = useStyles();
   //const { name, snippet, images } = props.data.results;
-  console.log(props);
+  console.log(props, "FSLDJFLKSDLFSDLK");
   return (
     <>
       {props.info.map((activity) => (
@@ -56,9 +56,9 @@ function ActivityCard(props) {
             <Button
               size="small"
               color="primary"
-              onClick={(e) => addToTrip(e, activity)}
+              onClick={(e) => removeFromTrip(e, activity)}
             >
-              Add Activity
+              Remove Activity
             </Button>
           </CardActions>
         </Card>
@@ -67,4 +67,4 @@ function ActivityCard(props) {
   );
 }
 
-export default ActivityCard;
+export default PendingActivityCard;

@@ -33,18 +33,21 @@ class EditTrip extends Component {
 
     super(props);
     this.state = {
+      travelCity: this.props.match.params.travelCity,
       startDate: this.props.startDate,
       returnDate: this.props.returnDate,
     };
   }
   handleFormSubmit = (event) => {
+    const travelCity = this.state.travelCity;
     const startDate = this.state.startDate;
     const returnDate = this.state.returnDate;
     event.preventDefault();
     axios
       .put(
-        `http://localhost:4000/travel/trips/${this.props._id}`,
+        `http://localhost:4000/travel/trips/${this.props.match.params.id}`,
         {
+          travelCity,
           startDate,
           returnDate,
         },
@@ -53,14 +56,17 @@ class EditTrip extends Component {
         }
       )
       .then(() => {
-        this.props.getTheTrip();
         this.props.history.push("/home");
       })
       .catch((error) => console.log(error));
   };
-  handleDateChange = (event) => {
+  handleStartDateChange = (event) => {
     this.setState({
       startDate: event.target.value,
+    });
+  };
+  handleReturnDateChange = (event) => {
+    this.setState({
       returnDate: event.target.value,
     });
   };
@@ -95,7 +101,7 @@ class EditTrip extends Component {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={(e) => this.handleDateChange(e)}
+            onChange={(e) => this.handleStartDateChange(e)}
           />
           <TextField
             id="date"
@@ -108,9 +114,9 @@ class EditTrip extends Component {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={(e) => this.handleDateChange(e)}
+            onChange={(e) => this.handleReturnDateChange(e)}
           />
-          <button type="submit">Save changes</button>
+          <button type="submit">Save Changes</button>
         </form>
         <Link to="/home">
           <Button text="Back" />
