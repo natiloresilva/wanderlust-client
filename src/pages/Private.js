@@ -22,7 +22,7 @@ class Private extends Component {
   }
   getTrips = () => {
     axios
-      .get(`http://localhost:4000/travel/trips`, {
+      .get(`${process.env.REACT_APP_API_URI}/travel/trips`, {
         withCredentials: true,
       })
       .then((response) => {

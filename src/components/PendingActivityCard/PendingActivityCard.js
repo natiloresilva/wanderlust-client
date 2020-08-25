@@ -22,7 +22,7 @@ function PendingActivityCard(props) {
     console.log(activity, props, e);
     axios
       .put(
-        `http://localhost:4000/travel/trips/${props.params}/removeThing/${activity.id}`
+        `${process.env.REACT_APP_API_URI}/travel/trips/${props.params}/removeThing/${activity.id}`
       )
       .then((removedActivity) => console.log(removedActivity))
       .catch((err) => console.log(err));

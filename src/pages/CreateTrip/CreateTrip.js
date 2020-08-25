@@ -39,7 +39,7 @@ class CreateATrip extends Component {
     const { travelCity, startDate, returnDate } = this.state;
     axios
       .post(
-        "http://localhost:4000/travel/trips",
+        `${process.env.REACT_APP_API_URI}/travel/trips`,
         { travelCity, startDate, returnDate },
         { withCredentials: true }
       )

@@ -23,7 +23,7 @@ function ActivityCard(props) {
     //console.log(activity, props, e);
     axios
       .put(
-        `http://localhost:4000/travel/trips/${props.params}/addThing/${activity.id}`, { activity }
+        `${process.env.REACT_APP_API_URI}/travel/trips/${props.params}/addThing/${activity.id}`, { activity }
       )
       .then((addedActivity) => console.log(addedActivity))
       .catch((err) => console.log(err));

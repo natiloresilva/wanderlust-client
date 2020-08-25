@@ -47,7 +47,7 @@ class EditProfile extends Component {
     const city = this.state.city;
     const bio = this.state.bio;
     axios
-      .put(`http://localhost:4000/profile/editProfile/${this.props.user._id}`, {
+      .put(`${process.env.REACT_APP_API_URI}/profile/editProfile/${this.props.user._id}`, {
         city,
         bio,
       })

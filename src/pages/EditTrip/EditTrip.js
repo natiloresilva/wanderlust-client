@@ -45,7 +45,7 @@ class EditTrip extends Component {
     event.preventDefault();
     axios
       .put(
-        `http://localhost:4000/travel/trips/${this.props.match.params.id}`,
+        `${process.env.REACT_APP_API_URI}/travel/trips/${this.props.match.params.id}`,
         {
           travelCity,
           startDate,
@@ -72,7 +72,7 @@ class EditTrip extends Component {
   };
   handleDelete = (index) => {
     axios
-    .delete(`http://localhost:4000/travel/trips/${this.props.match.params.id}`)
+    .delete(`${process.env.REACT_APP_API_URI}/travel/trips/${this.props.match.params.id}`)
     .then(() => {
       this.props.history.push("/home");
     })

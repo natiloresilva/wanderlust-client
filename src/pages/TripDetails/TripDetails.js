@@ -17,7 +17,7 @@ class TripDetails extends Component {
   getSingleTrip = () => {
     const { params } = this.props.match;
     axios
-      .get(`http://localhost:4000/travel/trip/${params.id}`)
+      .get(`${process.env.REACT_APP_API_URI}/travel/trip/${params.id}`)
       .then(responseFromApi => {
         const theTrip = responseFromApi.data;
         this.setState(theTrip);
