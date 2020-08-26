@@ -14,6 +14,8 @@ import TripDetail from "./pages/TripDetails/TripDetail";
 import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import EditTrip from "./pages/EditTrip/EditTrip";
+import AddActivity from "./pages/AddActivities/AddActivities";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -46,6 +48,7 @@ class App extends Component {
                   path="/trips/create"
                   component={CreateTrip}
                 />
+                <PrivateRoute exact path="/trips/detail/:travelCity/:id/addActivity" component={AddActivity} />
                 <PrivateRoute
                   exact
                   path="/trips/detail/:id"
@@ -60,7 +63,7 @@ class App extends Component {
 
                 <PrivateRoute
                   exact
-                  path="/trips/detail/edit/:id"
+                  path="/trips/detail/edit/:travelCity/:id"
                   component={EditTrip}
                 />
               </Switch>

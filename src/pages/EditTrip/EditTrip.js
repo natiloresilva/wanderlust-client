@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
@@ -33,7 +33,7 @@ class EditTrip extends Component {
 
     super(props);
     this.state = {
-      travelCity: this.props.travelCity,
+      travelCity: this.props.match.params.travelCity,
       startDate: this.props.startDate,
       returnDate: this.props.returnDate,
     };
@@ -45,7 +45,7 @@ class EditTrip extends Component {
     event.preventDefault();
     axios
       .put(
-        `http://localhost:4000/travel/trips/${this.props._id}`,
+        `${process.env.REACT_APP_API_URI}/travel/trips/${this.props.match.params.id}`,
         {
           travelCity,
           startDate,
@@ -56,51 +56,41 @@ class EditTrip extends Component {
         }
       )
       .then(() => {
-        this.props.getTheTrip();
-        // after submitting the form, redirect to '/travels'
-        this.props.history.push("/travels");
+        this.props.history.push("/home");
       })
       .catch((error) => console.log(error));
   };
-  handleChangeCity = (event) => {
-    this.setState({
-      travelCity: event.target.value,
-    });
-  };
-  handleDateChange = (event) => {
+  handleStartDateChange = (event) => {
     this.setState({
       startDate: event.target.value,
+    });
+  };
+  handleReturnDateChange = (event) => {
+    this.setState({
       returnDate: event.target.value,
     });
   };
-  /* hadleDelete = (index) => {
-      const tripCopy = [...this.state];
-      tripCopy.splice(index, 1);
-      this.setState({
-        contacts: contactsCopy,
-      });
-    }; */
+  handleDelete = (index) => {
+    axios
+    .delete(`${process.env.REACT_APP_API_URI}/travel/trips/${this.props.match.params.id}`)
+    .then(() => {
+      this.props.history.push("/home");
+    })
+    .catch((error) => console.log(error));
+  }
 
   render() {
-    const { travelCity, startDate, returnDate } = this.state;
+    const { startDate, returnDate } = this.state;
     const { classes } = this.props;
     return (
       <div>
-        <h1 className="title-newtrip">Edit The information of your trip</h1>
+        <h1 className="title-newtrip">Edit the information of your trip</h1>
         <form
           className={classes.root}
           noValidate
           autoComplete="off"
           onSubmit={(e) => this.handleFormSubmit(e)}
         >
-          <TextField
-            id="outlined-basic"
-            label="City"
-            variant="outlined"
-            name="travelCity"
-            value={travelCity}
-            onChange={(e) => this.handleChangeCity(e)}
-          />
           <TextField
             id="date"
             label="Start Date"
@@ -112,7 +102,7 @@ class EditTrip extends Component {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={(e) => this.handleDateChange(e)}
+            onChange={(e) => this.handleStartDateChange(e)}
           />
           <TextField
             id="date"
@@ -125,10 +115,11 @@ class EditTrip extends Component {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={(e) => this.handleDateChange(e)}
+            onChange={(e) => this.handleReturnDateChange(e)}
           />
-          <button type="submit">Save changes</button>
+          <button type="submit">Save Changes</button>
         </form>
+        <button type="submit" onClick={this.handleDelete}>Delete</button>
         <Link to="/home">
           <Button text="Back" />
         </Link>
