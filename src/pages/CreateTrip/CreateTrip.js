@@ -102,7 +102,6 @@ class CreateATrip extends Component {
               <MenuItem value={"Moscow"}>Moscow</MenuItem>
               <MenuItem value={"Munich"}>Munich</MenuItem>
               <MenuItem value={"Mykonos"}>Mykonos</MenuItem>
-              <MenuItem value={"New York"}>New York</MenuItem>
               <MenuItem value={"Oslo"}>Oslo</MenuItem>
               <MenuItem value={"Oxford"}>Oxford</MenuItem>
               <MenuItem value={"Palermo"}>Palermo</MenuItem>

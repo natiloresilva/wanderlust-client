@@ -75,47 +75,58 @@ class TripDetail extends Component {
 
   render() {
     return (
-      <div className="container-trip-detail">
-        <Typography variant="h4">{this.state.travelCity}</Typography>
-        <Typography variant="body1">
-          <span>Start Date: </span>
-          {this.state.startDate}
-        </Typography>
-        <Typography variant="body1">
-          <span>Return Date: </span>
-          {this.state.returnDate}
-        </Typography>
+      <div>
+        <div className="container-home">
+          <div className="container-trip-detail">
+            <Typography variant="h4">{this.state.travelCity}</Typography>
+            <Typography variant="body1">
+              <span>Start Date: </span>
+              {this.state.startDate}
+            </Typography>
+            <Typography variant="body1">
+              <span>Return Date: </span>
+              {this.state.returnDate}
+            </Typography>
 
-        {/* 
+            {/* 
         <div className="container-map">
           <Map lat={this.state.lat} lng={this.state.lng} />
         </div> 
         */}
 
-        <div>
-          <Link
-            to={`/trips/detail/edit/${this.state.travelCity}/${this.props.match.params.id}`}
-          >
-            Edit
-          </Link>
+            <div className="button-edit-trip">
+              <Link
+                to={`/trips/detail/edit/${this.state.travelCity}/${this.props.match.params.id}`}
+              >
+                Edit
+              </Link>
+            </div>
+
+            {this.state.idActivities &&
+              this.state.idActivities.map((activity) => (
+                <PendingActivityCard info={activity} />
+              ))}
+
+            <br />
+            <br />
+
+            <Link
+              to={{
+                pathname: `/trips/detail/${this.state.travelCity}/${this.props.match.params.id}/addActivity`,
+                state: { detail: this.props.match.params.id },
+              }}
+            >
+              <Fab
+                className="fab"
+                size="small"
+                color="secondary"
+                aria-label="add"
+              >
+                <AddIcon />
+              </Fab>
+            </Link>
+          </div>
         </div>
-
-        {this.state.idActivities &&
-          this.state.idActivities.map((activity) => (
-            <PendingActivityCard info={activity} />
-          ))}
-
-        <Link
-          to={{
-            pathname: `/trips/detail/${this.state.travelCity}/${this.props.match.params.id}/addActivity`,
-            state: { detail: this.props.match.params.id },
-          }}
-        >
-          <Fab className="fab" size="small" color="secondary" aria-label="add">
-            <AddIcon />
-          </Fab>
-        </Link>
-
         <NavBar />
       </div>
     );

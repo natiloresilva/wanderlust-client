@@ -7,6 +7,7 @@ import { TextField } from "@material-ui/core";
 import { withAuth } from "../../lib/AuthProvider";
 import NavBar from "../../components/NavBar/NavBar";
 import Button from "../../components/Button/Button";
+import Edittrip from "./Edittrip.css";
 
 const styles = (theme) => ({
   root: {
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 class EditTrip extends Component {
   constructor(props) {
     console.log(props);
-
     super(props);
     this.state = {
       travelCity: this.props.match.params.travelCity,
@@ -72,18 +72,19 @@ class EditTrip extends Component {
   };
   handleDelete = (index) => {
     axios
-    .delete(`${process.env.REACT_APP_API_URI}/travel/trips/${this.props.match.params.id}`)
-    .then(() => {
-      this.props.history.push("/home");
-    })
-    .catch((error) => console.log(error));
-  }
-
+      .delete(
+        `${process.env.REACT_APP_API_URI}/travel/trips/${this.props.match.params.id}`
+      )
+      .then(() => {
+        this.props.history.push("/home");
+      })
+      .catch((error) => console.log(error));
+  };
   render() {
     const { startDate, returnDate } = this.state;
     const { classes } = this.props;
     return (
-      <div>
+      <div className="container-edit-trip">
         <h1 className="title-newtrip">Edit the information of your trip</h1>
         <form
           className={classes.root}
@@ -117,13 +118,27 @@ class EditTrip extends Component {
             }}
             onChange={(e) => this.handleReturnDateChange(e)}
           />
-          <button type="submit">Save Changes</button>
-        </form>
-        <button type="submit" onClick={this.handleDelete}>Delete</button>
-        <Link to="/home">
-          <Button text="Back" />
-        </Link>
 
+          <div className="container-save-button">
+            <button type="submit" className="save-button">
+              Save Changes
+            </button>
+          </div>
+        </form>
+
+        <div className="container-buttons">
+          <button
+            type="submit"
+            className="delete-button"
+            onClick={this.handleDelete}
+          >
+            Delete
+          </button>
+
+          <Link to="/home">
+            <Button text="Back" />
+          </Link>
+        </div>
         <NavBar />
       </div>
     );
