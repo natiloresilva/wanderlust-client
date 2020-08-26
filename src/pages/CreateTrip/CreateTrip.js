@@ -85,8 +85,8 @@ class CreateATrip extends Component {
               className={classes.selectEmpty}
             >
               <MenuItem value="Barcelona">Barcelona</MenuItem>
-              <MenuItem value={"Roma"}>Roma</MenuItem>
               <MenuItem value={"Madrid"}>Madrid</MenuItem>
+              <MenuItem value={"Rome"}>Rome</MenuItem>
               <MenuItem value={"Paris"}>Paris</MenuItem>
             </Select>
             <FormHelperText>Pick a city!</FormHelperText>

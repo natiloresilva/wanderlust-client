@@ -80,9 +80,9 @@ class TripDetail extends Component {
           {this.state.returnDate}
         </Typography>
 
-        <div className="container-map">
+        {/* <div className="container-map">
           <Map lat={this.state.lat} lng={this.state.lng} />
-        </div>
+        </div> */}
         <NavBar />
       </div>
     );
