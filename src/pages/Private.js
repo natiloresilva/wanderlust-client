@@ -20,6 +20,7 @@ class Private extends Component {
   componentDidMount() {
     this.getTrips();
   }
+
   getTrips = () => {
     axios
       .get(`${process.env.REACT_APP_API_URI}/travel/trips`, {
@@ -48,9 +49,11 @@ class Private extends Component {
   showAllTrips() {
     if (this.state.trips.length === 0) {
       return this.notTripsVerify();
+    } else {
     }
 
-    const listAllTravels = this.state.trips.map((trip) => (
+    const trips = [...this.state.trips];
+    const listAllTravels = trips.map((trip) => (
       // Correcto! La key debería ser especificada dentro del array.
       <Card key={trip._id} travel={{ trip }} />
     ));

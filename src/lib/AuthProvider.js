@@ -64,13 +64,15 @@ class AuthProvider extends React.Component {
     auth
       .login({ username, password })
       .then((user) => this.setState({ isLoggedin: true, user }))
-      .catch((err) => console.log("errorrrrrrrrrrrrrrrrrr"));
+      .catch((err) => console.log("error"));
   };
 
   logout = () => {
     auth
       .logout()
-      .then(() => this.setState({ isLoggedin: false, user: null }))
+      .then(() => {
+        this.setState({ isLoggedin: false, user: null });
+      })
       .catch((err) => console.log(err));
   };
 

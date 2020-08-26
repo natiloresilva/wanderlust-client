@@ -12,6 +12,9 @@ function UserProfile(props) {
   const edit = () => {
     history.push(`/profile/edit`);
   };
+  const logout = () => {
+    props.logout();
+  };
   const { username, email, city, bio } = props.user;
   return (
     <div>
@@ -41,6 +44,7 @@ function UserProfile(props) {
       </div>
       <div className="container-edit-button">
         <Button text="Edit" handleClickButton={edit} />
+        <Button text="Logout" handleClickButton={logout} />
       </div>
       <NavBar />
     </div>
