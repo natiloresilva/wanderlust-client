@@ -1,4 +1,25 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Ranchers", serif;
+}
+
+.container-home {
+  margin-left: 5%;
+  width: 90%;
+  padding-bottom: 90px;
+}
+
+.card-travel {
+  margin-top: 30px;
+}
+
+.container-nottrips {
+  margin-top: 30px;
+}
+
+.title-home {
+  margin: 20px;
+  justify-content: center;
+  text-align: center;
 }

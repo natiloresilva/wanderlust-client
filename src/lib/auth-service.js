@@ -3,14 +3,14 @@ import axios from "axios";
 class Auth {
   constructor() {
     this.auth = axios.create({
-      baseURL: "http://localhost:4000",
+      baseURL: process.env.REACT_APP_API_URI,
       withCredentials: true,
     });
   }
 
-  signup({ username, password }) {
+  signup({ username, password, email }) {
     return this.auth
-      .post("/auth/signup", { username, password })
+      .post("/auth/signup", { username, password, email })
       .then(({ data }) => data);
     // .then((response) => response.data);
   }
@@ -19,7 +19,6 @@ class Auth {
     return this.auth
       .post("/auth/login", { username, password })
       .then(({ data }) => data);
-    // .then((response) => response.data);
   }
 
   logout() {

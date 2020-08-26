@@ -5,6 +5,10 @@ const { Consumer, Provider } = React.createContext();
 // HOC para crear Consumer
 const withAuth = (WrappedComponent) => {
   return class extends React.Component {
+    handleEditUser() {
+      console.log("handleEditUser");
+    }
+
     render() {
       return (
         <Consumer>
@@ -17,6 +21,7 @@ const withAuth = (WrappedComponent) => {
                 user={user}
                 logout={logout}
                 isLoggedin={isLoggedin}
+                handleEditUser={this.handleEditUser}
                 {...this.props}
               />
             );
@@ -59,7 +64,7 @@ class AuthProvider extends React.Component {
     auth
       .login({ username, password })
       .then((user) => this.setState({ isLoggedin: true, user }))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("errorrrrrrrrrrrrrrrrrr"));
   };
 
   logout = () => {

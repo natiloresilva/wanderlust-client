@@ -37,12 +37,7 @@ class Login extends Component {
     return (
       <div>
         <h1 className="title-login">Login</h1>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={this.handleFormSubmit}
-        >
+        <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="outlined-basic"
             label="Username"
@@ -60,18 +55,16 @@ class Login extends Component {
             value={password}
             onChange={this.handleChange}
           />
+          <div className="container-button">
+            <Button handleClickButton={this.handleFormSubmit} text="Login" />
+          </div>
         </form>
         <div className="signup-text">
           <span>Don’t have an account? </span>
-          <a>
-            <Link to={"/signup"}>
-              <span>Signup!</span>
-            </Link>
-          </a>
-        </div>
 
-        <div className="container-button">
-          <Button type="submit" text="Login" />
+          <Link to={"/signup"}>
+            <span>Signup!</span>
+          </Link>
         </div>
       </div>
     );

@@ -7,7 +7,7 @@ export default class componentName extends Component {
       <Button
         variant="contained"
         color="secondary"
-        className={this.props.className}
+        onClick={this.props.handleClickButton}
       >
         {this.props.text}
       </Button>

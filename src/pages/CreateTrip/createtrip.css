@@ -1,0 +1,7 @@
+.container-createtrip-buttons {
+  width: 90%;
+  text-align: center;
+  margin-left: 5%;
+  display: flex;
+  justify-content: space-between;
+}
