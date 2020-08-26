@@ -11,6 +11,7 @@ class Private extends Component {
   constructor(props) {
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleCallbackAction = this.handleCallbackAction.bind(this);
     this.state = {
       trips: [],
       textSearch: "",
@@ -36,6 +37,12 @@ class Private extends Component {
       });
   };
 
+  handleCallbackAction() {
+    console.log("handleCallbackAction");
+
+    this.getTrips();
+  }
+
   notTripsVerify() {
     return (
       <div className="container-nottrips">
@@ -49,13 +56,16 @@ class Private extends Component {
   showAllTrips() {
     if (this.state.trips.length === 0) {
       return this.notTripsVerify();
-    } else {
     }
 
     const trips = [...this.state.trips];
     const listAllTravels = trips.map((trip) => (
       // Correcto! La key debería ser especificada dentro del array.
-      <Card key={trip._id} travel={{ trip }} />
+      <Card
+        key={trip._id}
+        travel={{ trip }}
+        callbackAction={this.handleCallbackAction}
+      />
     ));
 
     // this.state.trips es un array de objetos!!!

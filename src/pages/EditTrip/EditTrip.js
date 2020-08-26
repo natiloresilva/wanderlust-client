@@ -30,19 +30,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 class EditTrip extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+
     this.state = {
       travelCity: this.props.match.params.travelCity,
       startDate: this.props.startDate,
       returnDate: this.props.returnDate,
     };
   }
-  handleFormSubmit = (event) => {
+  handleFormSubmit = () => {
     const travelCity = this.state.travelCity;
     const startDate = this.state.startDate;
     const returnDate = this.state.returnDate;
-    event.preventDefault();
     axios
       .put(
         `${process.env.REACT_APP_API_URI}/travel/trips/${this.props.match.params.id}`,
@@ -70,15 +70,9 @@ class EditTrip extends Component {
       returnDate: event.target.value,
     });
   };
-  handleDelete = (index) => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_API_URI}/travel/trips/${this.props.match.params.id}`
-      )
-      .then(() => {
-        this.props.history.push("/home");
-      })
-      .catch((error) => console.log(error));
+
+  goBack = () => {
+    this.props.history.push("/home");
   };
   render() {
     const { startDate, returnDate } = this.state;
@@ -86,12 +80,7 @@ class EditTrip extends Component {
     return (
       <div className="container-edit-trip">
         <h1 className="title-newtrip">Edit the information of your trip</h1>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={(e) => this.handleFormSubmit(e)}
-        >
+        <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="date"
             label="Start Date"
@@ -118,26 +107,15 @@ class EditTrip extends Component {
             }}
             onChange={(e) => this.handleReturnDateChange(e)}
           />
-
-          <div className="container-save-button">
-            <button type="submit" className="save-button">
-              Save Changes
-            </button>
-          </div>
         </form>
 
         <div className="container-buttons">
-          <button
-            type="submit"
-            className="delete-button"
-            onClick={this.handleDelete}
-          >
-            Delete
-          </button>
+          <Button text="Back" handleClickButton={this.goBack} />
 
-          <Link to="/home">
-            <Button text="Back" />
-          </Link>
+          <Button
+            text="Save Changes"
+            handleClickButton={this.handleFormSubmit}
+          />
         </div>
         <NavBar />
       </div>
