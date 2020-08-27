@@ -132,7 +132,7 @@ class TripDetail extends Component {
           lng: 2.3542182,
         });
         break;
-      case "Roma":
+      case "Rome":
         this.setState({
           lat: 41.907061,
           lng: 12.4665086,

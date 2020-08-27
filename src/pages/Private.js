@@ -47,7 +47,8 @@ class Private extends Component {
     return (
       <div className="container-nottrips">
         <Typography variant="body2" color="textSecondary" component="p">
-          ¡Todavía no tienes viajes, crea uno y que comience la aventura!
+          You still do not have trips, create a new one and let the adventure
+          begin!
         </Typography>
       </div>
     );
